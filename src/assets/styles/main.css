@@ -1,0 +1,11 @@
+:root {
+    --primary-color: #000000;
+    --secondary-color: #FFFFFF;
+    --third-color: #D9D9D9;
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+*{
+    text-decoration: none;
+    box-sizing: border-box;
+}
