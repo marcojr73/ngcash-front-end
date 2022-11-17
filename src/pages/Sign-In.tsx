@@ -1,6 +1,13 @@
+import Banner from "../components/auth/Banner"
+import ContainerAuth from "../components/auth/ContainerAuth"
+import Form from "../components/auth/Form"
+
 function SignIn(){
     return(
-        <p>I am the sign-in</p>
+        <ContainerAuth>
+        <Banner/>
+        <Form textButton="Entrar"/>
+      </ContainerAuth>  
     )
 }
 

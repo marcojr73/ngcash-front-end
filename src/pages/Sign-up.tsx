@@ -1,10 +1,13 @@
 import Banner from "../components/auth/Banner"
+import Form from "../components/auth/Form"
+import ContainerAuth from "../components/auth/ContainerAuth"
 
 function SignUp(){
     return(
-        <>
-            <Banner/>
-        </>
+      <ContainerAuth>
+        <Banner/>
+        <Form textButton="Criar conta"/>
+      </ContainerAuth>  
     )
 }
 
