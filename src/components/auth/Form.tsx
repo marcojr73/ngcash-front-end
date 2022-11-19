@@ -1,28 +1,35 @@
 import { Link } from "react-router-dom"
-import styled from "styled-components"
+import styled, { StyledComponent } from "styled-components"
 import wallpaper from "../../assets/images/wallpaperunniverse.jpg"
 import { AiFillEye } from "react-icons/ai"
 import { useState } from "react"
-
+import { Iauth } from "../../models/models"
 
 interface Itype {
-    text: "password" | "text"
+    text: "password" | "text" 
 }
+type ItextButton = "Entrar" | "Criar conta" | JSX.Element
 
-function Form({ textButton }: {textButton: string}){
+
+type ItextNavigate = "Não possui uma conta?" | "acessar minha conta"
+type IrouteNavigate = "/" | "/sign-up"
+
+function Form({ userName, password, setUserName, setPassword, event, textButton, textNavigate, routeNavigate }: 
+    { userName: string, password: string, setUserName: any, setPassword: any, event: any, textButton: ItextButton, textNavigate: ItextNavigate, routeNavigate: IrouteNavigate}){
+
     const [ Type, setType ] = useState<Itype>({text: "password"})
 
     return(
         <ContainerForm>
             <img src={wallpaper} alt="wallpaper" />
-            <form>
-                <input placeholder="Nome de usuário"/>
+            <form onSubmit={event}>
+                <input placeholder="Nome de usuário" value={userName} onChange={(e) => setUserName(e.target.value)}/>
                 <div className="password">
-                    <input type={Type.text} placeholder="Senha"/>
+                    <input type={Type.text} placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <AiFillEye className="eye" onClick={() => Type.text === "password" ? setType({text: "text"}) : setType({text: "password"})}/>
                 </div>
                 <button>{textButton}</button>
-                <Link to="/">acessar minha conta</Link>
+                <Link to={routeNavigate}>{textNavigate}</Link>
             </form>
         </ContainerForm>
     )
