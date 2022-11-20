@@ -1,6 +1,6 @@
 import axiosInstance from "./axiosInstance"
 
-async function getLastTransactionsByfilters(setSummaries: any, initial?: Date, final?: Date, type?: String){
+async function getLastTransactionsByfilters(setSummaries: any, initial?: string, final?: string, type?: "cashin" | "cashout"){
     let filters = ""
     if(initial && final && !type) filters = `?initial=${initial}&final=${final}`
     if(!initial && !final && type) filters = `?type=${type}`
@@ -14,7 +14,7 @@ async function getLastTransactionsByfilters(setSummaries: any, initial?: Date, f
     }
     try {
         const response = await axiosInstance.get(url, config)
-        setSummaries(response.data)
+        setSummaries(response.data.reverse())
     } catch (error) {
         console.log(error)
     }

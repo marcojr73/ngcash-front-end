@@ -1,14 +1,18 @@
 import styled from "styled-components"
 import { Itransaction } from "../../models/models"
 import dayjs from "dayjs"
+import { UserContext } from "../../provider/UserProvider"
+import { useContext } from "react"
 
 function Transaction({transaction}: {transaction: Itransaction}){
 
     const day = dayjs(transaction.createdAt).format("DD")
     const month = dayjs(transaction.createdAt).format("MMM")
     const year = dayjs(transaction.createdAt).format("YY")
-    const cash = transaction.value.toFixed(2).replace(".", ",")
-    const name = transaction.credited.Users[0].userName
+    const cash = (transaction.value * 0.01).toFixed(2).replace(".", ",")
+    const credited = transaction.credited.Users[0].userName
+    const debited = transaction.debited.Users[0].userName
+    const {user} = useContext(UserContext)
 
     return(
         <CardTransaction>
@@ -20,7 +24,7 @@ function Transaction({transaction}: {transaction: Itransaction}){
                         <p>{year}</p>
                     </div>
                     <p className="value">{`R$ ${cash}`}</p>
-                    <p className="name"><span>Enviado para </span>{name}</p>
+                    {user.userName === credited ? <p className="credited">Recebido de {debited}</p> : <p className="debited">Enviado para {credited}</p>}
                 </div>
             <div className="line"></div>
         </CardTransaction>
@@ -64,9 +68,17 @@ const CardTransaction = styled.div`
         width: fit-content;
     }
 
-    .name{
+    .credited, .debited{
         font-size: 20px;
         position: absolute;
         right: 100px;
+    }
+
+    .credited{
+        color: green
+    }
+
+    .debited{
+        color: red
     }
 `

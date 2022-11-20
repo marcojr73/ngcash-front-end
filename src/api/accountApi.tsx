@@ -1,6 +1,4 @@
-import { useContext } from "react"
 import { IsendTransaction } from "../models/models"
-import { UserContext} from "../provider/UserProvider"
 import axiosInstance from "./axiosInstance"
 
 async function getBalanceUser(){
