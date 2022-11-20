@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom"
-import styled, { StyledComponent } from "styled-components"
+import styled from "styled-components"
 import wallpaper from "../../assets/images/wallpaperunniverse.jpg"
 import { AiFillEye } from "react-icons/ai"
 import { useState } from "react"
-import { Iauth } from "../../models/models"
+import { ItypeInput } from "../../models/models"
 
-interface Itype {
-    text: "password" | "text" 
-}
+
 type ItextButton = "Entrar" | "Criar conta" | JSX.Element
 
 
@@ -17,7 +15,7 @@ type IrouteNavigate = "/" | "/sign-up"
 function Form({ userName, password, setUserName, setPassword, event, textButton, textNavigate, routeNavigate }: 
     { userName: string, password: string, setUserName: any, setPassword: any, event: any, textButton: ItextButton, textNavigate: ItextNavigate, routeNavigate: IrouteNavigate}){
 
-    const [ Type, setType ] = useState<Itype>({text: "password"})
+    const [ Type, setType ] = useState<ItypeInput>({text: "password"})
 
     return(
         <ContainerForm>
