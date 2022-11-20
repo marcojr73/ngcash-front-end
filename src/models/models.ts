@@ -44,6 +44,11 @@ type Iuser = {
     balance: number
 }
 
+type IsendTransaction = {
+	userName: string,
+	value: number | undefined
+}
+
 interface ItypeInput {
     text: "password" | "text" 
 }
@@ -55,5 +60,6 @@ export type {
     Isummaries,
     Ibalance,
     Iuser,
-    ItypeInput
+    ItypeInput,
+    IsendTransaction
 }

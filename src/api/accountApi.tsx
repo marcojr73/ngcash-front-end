@@ -1,10 +1,11 @@
 import { useContext } from "react"
+import { IsendTransaction } from "../models/models"
 import { UserContext} from "../provider/UserProvider"
 import axiosInstance from "./axiosInstance"
 
 async function getBalanceUser(){
     const token: string | null = localStorage.getItem("token")
-    const url = "http://localhost:5000/account"
+    const url = "/account"
     const config = {
         headers: {
             authorization: `Bearer ${token}`
@@ -18,6 +19,22 @@ async function getBalanceUser(){
     }
 }
 
+async function sendTransaction(data: IsendTransaction){
+    const token: string | null = localStorage.getItem("token")
+    const url = "/transaction"
+    const config = {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    }
+    try {
+        await axiosInstance.post(url, data, config)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
-    getBalanceUser
+    getBalanceUser,
+    sendTransaction
 }

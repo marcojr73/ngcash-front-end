@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import styled from "styled-components"
-import { getBalanceUser } from "../../api/accountApi";
+import { getBalanceUser, sendTransaction } from "../../api/accountApi";
 import { UserContext } from "../../provider/UserProvider";
-import { FiSettings } from "react-icons/fi"
+import { IoMdExit } from "react-icons/io"
 import { AiFillEye } from "react-icons/ai"
-import { ItypeInput } from "../../models/models";
+import LoaderButton from "../../utils/LoaderButton";
+import { useNavigate } from "react-router-dom";
 
 
 function Account(){
@@ -14,6 +15,8 @@ function Account(){
     const [ blur, setblur ] = useState("")
     const [to, setTo] = useState("")
     const [value, setValue] = useState<number>()
+    const [textButton, setTextButton] = useState<string | JSX.Element>("Transferir")
+    const navigate = useNavigate()
 
     useEffect(()=>{
         (async function (){
@@ -27,6 +30,29 @@ function Account(){
 
     async function newTransaction(e: { preventDefault: () => void; }){
         e.preventDefault()
+        if(value && to) {
+            setTextButton(<LoaderButton/>)
+            const data = {
+                userName: to,
+                value: value*100
+            }
+            try {
+                await sendTransaction(data)
+                setUser(await getBalanceUser())
+                toast.success("sucesso")
+                setTextButton("Transferir")
+            } catch (error) {
+                setTextButton("Transferir")
+                toast.error("Falha ao enviar a transação, tente novamente mais tarde")
+            }
+        } else {
+            toast.error("preencha corretamente os campos")
+        }
+    }
+
+    function exit(){
+        localStorage.setItem("token", "")
+        navigate("/")
     }
 
     return(
@@ -36,7 +62,10 @@ function Account(){
         <ContainerAccount>
             <section className="userName">
                 <h1>@{user.userName}</h1>
-                <FiSettings className="icon-exit"/>
+                <div onClick={exit} className="exit">
+                    <IoMdExit className="icon-exit"/>
+                    <p className="text-exit">Sair</p>
+                </div>
             </section>
             
             <section className="balance">
@@ -46,8 +75,8 @@ function Account(){
 
             <form onSubmit={newTransaction} className="send">
                 <input value={to} onChange={(e) => setTo(e.target.value)} type="text" placeholder="Enviar Para" />
-                <input value={value} onChange={(e) => setValue(parseFloat(e.target.value))} type="number" placeholder="Valor" />
-                <button>Transferir</button>
+                <input value={value} step="0.01" onChange={(e) => setValue(parseFloat(e.target.value))} type="number" placeholder="Valor em R$" />
+                <button>{textButton}</button>
             </form>
 
         </ContainerAccount>
@@ -71,9 +100,20 @@ const ContainerAccount = styled.section`
         margin-top: 20vh;
     }
 
+    .exit{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50px;
+        margin-left: 30px;
+    }
+
     .icon-exit{
         font-size: 45px;
-        margin-left: 30px;
+    }
+
+    .text-exit{
+        font-size: 20px;
     }
     
     .balance{
@@ -114,7 +154,7 @@ const ContainerAccount = styled.section`
     }
 
     input {
-        width: 60%;
+        width: 75%;
         height: 10%;
         margin-bottom: 80px;
         padding: 25px 25px 10px 10px;
