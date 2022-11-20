@@ -5,7 +5,7 @@ async function getLastTransactionsByfilters(setSummaries: any, initial?: string,
     if(initial && final && !type) filters = `?initial=${initial}&final=${final}`
     if(!initial && !final && type) filters = `?type=${type}`
     if(initial && final && type) filters = `?initial=${initial}&final=${final}&type=${type}`
-    const url = `http://localhost:5000/transactions/${filters}`
+    const url = `/transactions/${filters}`
     const token: string | null = localStorage.getItem("token")
     const config = {
         headers: {
