@@ -24,6 +24,7 @@ function SignUp(){
         const url = "/sign-up"
         const data: Iauth = {userName, password}
         await signUp(url, data)
+        toast.success("sucesso")
         navigate("/")
       } catch (error) {
         setTextButton("Criar conta")

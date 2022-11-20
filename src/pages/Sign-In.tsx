@@ -23,6 +23,7 @@ function SignIn(){
             const url = "/sign-in"
             const data: Iauth = {userName, password}
             await signIn(url, data)
+            toast.success("sucesso")
             navigate("/home")
         } catch (error) {
             setTextButton("Entrar")
