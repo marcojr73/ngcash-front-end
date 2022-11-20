@@ -28,11 +28,15 @@ function Summaries(){
 
     return(
         summaries.length === 0 ?
-        <ContainerSummaries>carregando meus padrim</ContainerSummaries>
+        <ContainerSummaries>
+            <h1>Extratos de transferências</h1>
+            <Filters setSummaries={setSummaries}/>
+            <h2>Você ainda não realizou nenhuma transferência</h2>
+        </ContainerSummaries>
         :
         <ContainerSummaries>
             <h1>Extratos de transferências</h1>
-            <Filters/>
+            <Filters setSummaries={setSummaries}/>
             {
                 summaries.map((transaction, index) => {
                     return(

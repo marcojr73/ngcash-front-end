@@ -19,6 +19,7 @@ const HeaderContainer = styled.header`
     display: flex;
     justify-content: center;
     position: absolute;
+    z-index: 1;
 
     img {
         height: 10vh;
