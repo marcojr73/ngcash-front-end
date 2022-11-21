@@ -27,7 +27,9 @@ function Form({ userName, password, setUserName, setPassword, event, textButton,
                 </div>
                 <input placeholder="Nome de usuário" value={userName} onChange={(e) => setUserName(e.target.value)}/>
                 <div className="password">
-                    <input type={Type.text} placeholder="Senha" pattern="/(?=.*?[A-Z])(?=.*?[0-9]){8}/" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <label>min 8 caracteres 1 número e 1 letra maiúscula
+                        <input type={Type.text} placeholder="Senha" pattern="/(?=.*?[A-Z])(?=.*?[0-9]){8}/" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </label>
                     <AiFillEye className="eye" onClick={() => Type.text === "password" ? setType({text: "text"}) : setType({text: "password"})}/>
                 </div>
                 <button>{textButton}</button>
@@ -103,10 +105,16 @@ const ContainerForm = styled.section`
         position: relative;
     }
 
+    label{
+        color: white;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
     .eye{
         color: white;
         position: absolute;
-        bottom: 45px;
+        bottom: 60px;
         right: 10px;
         font-size: 25px;
         cursor: pointer;
