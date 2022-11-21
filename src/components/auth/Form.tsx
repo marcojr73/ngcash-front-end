@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import wallpaper from "../../assets/images/wallpaperunniverse.jpg"
 import { AiFillEye } from "react-icons/ai"
 import { useState } from "react"
 import { ItypeInput } from "../../models/models"
+import wallpaper from "../../assets/images/logo.gif"
 
 
 type ItextButton = "Entrar" | "Criar conta" | JSX.Element
@@ -19,11 +19,15 @@ function Form({ userName, password, setUserName, setPassword, event, textButton,
 
     return(
         <ContainerForm>
-            <img src={wallpaper} alt="wallpaper" />
+            <img src={wallpaper}/>
             <form onSubmit={event}>
+                <div className="txt-mobile">
+                    <h1>Ngcash</h1>
+                    <h2>A carteira da nova geração</h2>
+                </div>
                 <input placeholder="Nome de usuário" value={userName} onChange={(e) => setUserName(e.target.value)}/>
                 <div className="password">
-                    <input type={Type.text} placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type={Type.text} placeholder="Senha" pattern="/(?=.*?[A-Z])(?=.*?[0-9]){8}/" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <AiFillEye className="eye" onClick={() => Type.text === "password" ? setType({text: "text"}) : setType({text: "password"})}/>
                 </div>
                 <button>{textButton}</button>
@@ -39,11 +43,18 @@ const ContainerForm = styled.section`
     width: 50vw;
     height: 100vh;
     background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     img{
-        width: 50vw;
+        width: 30vw;
         height: 50vh;
         margin-bottom: 75px;
+    }
+
+    .txt-mobile{
+        display: none;
     }
 
     form{
@@ -54,7 +65,7 @@ const ContainerForm = styled.section`
 
     input{
         margin-bottom: 30px;
-        width: 500px;
+        width: 50vh;
         padding: 25px 25px 10px 10px;
         background-color: var(--primary-color);
         border-top: none;
@@ -76,7 +87,7 @@ const ContainerForm = styled.section`
     }
 
     button{
-        width: 500px;
+        width: 50%;
         height: 50px;
         border-radius: 100px;
         font-size: 35px;
@@ -100,5 +111,20 @@ const ContainerForm = styled.section`
         font-size: 25px;
         cursor: pointer;
     }
+    @media only screen and (max-width: 514px){
+        width: 100vw;
 
+        input{
+            width: 35vh;
+        }
+        .txt-mobile{
+            color: var(--secondary-color);
+            font-size: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10%;
+        }
+    }
 `

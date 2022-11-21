@@ -56,7 +56,7 @@ const CardTransaction = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-left: 100px;
+        margin-left: 10%;
     }
 
     .value {
@@ -71,7 +71,7 @@ const CardTransaction = styled.div`
     .credited, .debited{
         font-size: 20px;
         position: absolute;
-        right: 100px;
+        right: 10%;
     }
 
     .credited{
@@ -80,5 +80,15 @@ const CardTransaction = styled.div`
 
     .debited{
         color: red
+    }
+
+    @media only screen and (max-width: 514px){
+        .line{
+            width: 100vw;
+        }
+
+        .credited, .debited{
+            margin-right: 0%;
+        }
     }
 `

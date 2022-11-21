@@ -33,4 +33,7 @@ const ContainerBanner = styled.section`
     h2{
         font-size: 50px;
     }
+    @media only screen and (max-width: 514px){
+        display: none;
+    }
 `

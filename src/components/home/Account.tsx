@@ -187,4 +187,16 @@ const ContainerAccount = styled.section`
         font-size: 35px;
     }
 
+    @media only screen and (max-width: 514px){
+        width: 100vw;
+
+        .send{
+            width: 100%;
+        }
+
+        button{
+            width: 77%;
+        }
+    }
+
 `

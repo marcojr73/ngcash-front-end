@@ -20,4 +20,8 @@ export default Home
 
 const ContainerHome = styled.main`
     display: flex;
+
+    @media only screen and (max-width: 514px){
+        flex-direction: column;
+    }
 `
