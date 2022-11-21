@@ -53,6 +53,10 @@ interface ItypeInput {
     text: "password" | "text" 
 }
 
+interface typeInput {
+    text: "password" | "text" 
+}
+
 
 export type {
     Iauth,

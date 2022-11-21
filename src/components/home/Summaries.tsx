@@ -68,5 +68,16 @@ const ContainerSummaries = styled.section`
         margin-bottom: 4%;
     }
 
+    h2{
+        margin-top: 20%;
+    }
+
+    @media only screen and (max-width: 514px){
+        width: 100vw;
+
+        h1{
+            font-size: 40px;
+        }
+    }
     
 `

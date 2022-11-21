@@ -84,8 +84,8 @@ const ContainerFilters = styled.section`
     width: 100%;
 
     button, .disable {
-        width: 200px;
-        height: 50px;
+        width: 18%;
+        height: 50%;
         border-radius: 100px;
         border: none;
         font-size: 25px;
@@ -105,6 +105,16 @@ const ContainerFilters = styled.section`
     .picker, .button-dates{
         width: 100px;
         height: 30px;
-        border-radius: 0px;
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 3%;
+        text-align: center;
+    }
+
+    @media only screen and (max-width: 514px){
+        .button, .disable, .active{
+            height: 40px;
+            font-size: 10px;
+        }
     }
 `
