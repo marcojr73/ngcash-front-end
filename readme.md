@@ -37,6 +37,22 @@ Instale meu projeto e suas dependências
 
 ***
 
+## Docker
+
+- Com o docker você pode rodar o ambiente sem precisar instalar nenhum programa
+- O front end estará disponivel na porta 5173,
+- Basta executar o comando na raiz do projeto
+
+```bash
+  npm run docker:build
+
+  npm run docker:run
+```
+
+***
+
+
+
 ##	 Tecnologias e Conceitos
 
 - React

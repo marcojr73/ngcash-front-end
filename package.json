@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "docker:build": "docker build -t ngcash-front .",
+    "docker:run": "docker run -p 5173:5173 ngcash",
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview"
